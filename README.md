@@ -1,10 +1,90 @@
 # Full Stack Open Course Part 0 Exercises
 
 ## 0.4 New note diagram
-[![](https://mermaid.ink/img/pako:eNq1VE1v00AQ_SujPYe4SSBtfegBUUCItkjJMRKa7I7jbexdsx9Oqyj_nVk7iQSFogD1afVmZ-a9Wb_ZCmkViVx4-hbJSHqnceWwXhjgr0EXtNQNmgBvnd14ck8DM3JtwvvIrQ0ETq_KALY4JOUwLwkin6DQVeXBxgCBocK6GjY6lNBipRUoDAhoFMhKy7Xv7nhsCZYxBGsOTfZl4dXV1b59Dl_uZnMoQ2h8nmU-RKXJD6UfllR5bdZ6WOiMHrBuKsKmyQxtvhrm2hdEGXSLzPwg5iiloqJTcmiThHQstQHfYaA9xIYxUn1ef7Ujd9Q_ORvDexvN_oqiJx1_r-zD9UnCmLV_RtWv2H2c33xOL0Mvzq5GbTh8KsEf016a3_1f0bv_E7tnrLHcE6cHkpHfr_vxP2GLM-l0EyCZtPNFjWuOYqfKJct6NpLtfdITY0v12bO72-5P_X_DSdVYpjUnjuenvH8ZkCOjyPXzSWXFQNTkeP6Kd9g2lVkIjtW0EDkfFRUYq7AQC7PjqxiDnT0aKfLgIg1Eb9v9yhN5gZU_otdKB-uOYGWRG4t8K8JjkxbmSvvAJaU1hV4lPLqK4cM0U3i44s0Wl0Np68xrVfLSLNvLaTYdTy9wPKHp-QTfTCZKLkeXF8X49ahQ52ejMYrdbiCo63_Tb-duSe--A3bV8gY?type=png)](https://mermaid.live/edit#pako:eNq1VE1v00AQ_SujPYe4SSBtfegBUUCItkjJMRKa7I7jbexdsx9Oqyj_nVk7iQSFogD1afVmZ-a9Wb_ZCmkViVx4-hbJSHqnceWwXhjgr0EXtNQNmgBvnd14ck8DM3JtwvvIrQ0ETq_KALY4JOUwLwkin6DQVeXBxgCBocK6GjY6lNBipRUoDAhoFMhKy7Xv7nhsCZYxBGsOTfZl4dXV1b59Dl_uZnMoQ2h8nmU-RKXJD6UfllR5bdZ6WOiMHrBuKsKmyQxtvhrm2hdEGXSLzPwg5iiloqJTcmiThHQstQHfYaA9xIYxUn1ef7Ujd9Q_ORvDexvN_oqiJx1_r-zD9UnCmLV_RtWv2H2c33xOL0Mvzq5GbTh8KsEf016a3_1f0bv_E7tnrLHcE6cHkpHfr_vxP2GLM-l0EyCZtPNFjWuOYqfKJct6NpLtfdITY0v12bO72-5P_X_DSdVYpjUnjuenvH8ZkCOjyPXzSWXFQNTkeP6Kd9g2lVkIjtW0EDkfFRUYq7AQC7PjqxiDnT0aKfLgIg1Eb9v9yhN5gZU_otdKB-uOYGWRG4t8K8JjkxbmSvvAJaU1hV4lPLqK4cM0U3i44s0Wl0Np68xrVfLSLNvLaTYdTy9wPKHp-QTfTCZKLkeXF8X49ahQ52ejMYrdbiCo63_Tb-duSe--A3bV8gY)
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Note right of Browser: The user fills out the form with valid data and clicks the save button
+
+    Browser ->> Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate Server
+    Note left of Server: The data in server is updated
+    Server ->> Browser: 302 Found
+    deactivate Server
+
+    Browser ->> Server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate Server
+    Server ->> Browser: HTML file
+    deactivate Server
+
+    Browser ->> Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate Server
+    Server ->> Browser: main.css
+    deactivate Server
+
+    Browser ->> Server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate Server
+    Server ->> Browser: main.js
+    deactivate Server
+
+    Note right of Browser: The browser executes the JavaScript code and makes a GET request to the server for the JSON data
+
+    Browser ->> Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate Server
+    Server ->> Browser: data.json
+    deactivate Server
+
+    Note right of Browser: The browser renders the data
+```
 
 ## 0.5 Single page application diagram
-[![](https://mermaid.ink/img/pako:eNq1VEFu2zAQ_ArBsyvVduskOuRQNGgRNOnBPuqyJlcSa4lkyaWbwPDfu5JsI03RAkYSnahZznA4WO5OKqdRFjLiz4RW4WcDdYCutII_D4GMMh4siU_B_YoY_i4sMWx7fKzcO0IRTN2QcNWRVIhVgyLxSqjWqE0UzgpiyEONojV2c6QfCOLd9fVBuBBfblaiIfKxyPNISRuMmYpZg21kpskqk-MDdL5F8D6PHkYpUGS2wG5GHTGih59e_2Tu6-rum6hMi-MWjc-or2euA2O5HM91-CfvDQ1yetmPs-09Zf3T3H86Y33wjQ-oEmEceuMWtrBUwXjRt6gAqzmGDRdhuFPoGzaSIDfsjqOtygVxu_x-LzQQvF4svRrf0Nlzk3lGfEk4Aa3GMGbTy8qJ7DBwZ2h-vrteppRc67CUBS81VpBaKmVp97wVErnlo1WyoJBwIpNnjeNrl0UFbTyhN9qQCyewdcAHy2In6dH3s6I2kVhSOVuZusdTaBk-xtmXs9pQk9aZcl0ejW54XjTbq0W-mC0uYTbHxcUcPs7nWq2nV5fV7MO00hfvpzOQ-_1E4nD-3TiYhvm0_w1WNZbQ?type=png)](https://mermaid.live/edit#pako:eNq1VEFu2zAQ_ArBsyvVduskOuRQNGgRNOnBPuqyJlcSa4lkyaWbwPDfu5JsI03RAkYSnahZznA4WO5OKqdRFjLiz4RW4WcDdYCutII_D4GMMh4siU_B_YoY_i4sMWx7fKzcO0IRTN2QcNWRVIhVgyLxSqjWqE0UzgpiyEONojV2c6QfCOLd9fVBuBBfblaiIfKxyPNISRuMmYpZg21kpskqk-MDdL5F8D6PHkYpUGS2wG5GHTGih59e_2Tu6-rum6hMi-MWjc-or2euA2O5HM91-CfvDQ1yetmPs-09Zf3T3H86Y33wjQ-oEmEceuMWtrBUwXjRt6gAqzmGDRdhuFPoGzaSIDfsjqOtygVxu_x-LzQQvF4svRrf0Nlzk3lGfEk4Aa3GMGbTy8qJ7DBwZ2h-vrteppRc67CUBS81VpBaKmVp97wVErnlo1WyoJBwIpNnjeNrl0UFbTyhN9qQCyewdcAHy2In6dH3s6I2kVhSOVuZusdTaBk-xtmXs9pQk9aZcl0ejW54XjTbq0W-mC0uYTbHxcUcPs7nWq2nV5fV7MO00hfvpzOQ-_1E4nD-3TiYhvm0_w1WNZbQ)
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Note right of Browser: The user clicks on the page link
+
+    Browser ->> Server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate Server 
+    Server ->> Browser: HTML file
+    deactivate Server
+
+    Browser ->> Server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate Server 
+    Server ->> Browser: main.css
+    deactivate Server
+
+    Browser ->> Server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate Server 
+    Server ->> Browser: spa.js
+    deactivate Server
+
+    Note right of Browser: The browser executes the JavaScrip code and makes a GET request to the server for JSON data
+
+    Browser ->> Server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate Server 
+    Server ->> Browser: data.json
+    deactivate Server
+
+    Note right of Browser: The browser renders the data
+```
 
 ## 0.6 New note in single page application
-[![](https://mermaid.ink/img/pako:eNqNUk1v2zAM_SuEzpndOFva-tDD2h33AaTHAAUjUbZQWfIkylkR5L9PthMX6C7TQSAenx75KJ6E9IpELSL9TuQkPRlsAnZ7B_n0GNhI06Nj-Br8MVL4N7GjMIz4nPnhmSCYpmXw-vqohueWIOUItLE2gk8MnCHtQwdHwy0MaI0ChYyAToG0Rr7GiRNxIDgkZu_-o8ik4A-MxpECHXz3XshECOQUhZzxbsJ7bGjWnO-LFnx6eLgYq-HXz90ztMx9rMsyclKGYiFj0ZKNxr2aQpuS_mDXW8K-Lx0dX1xu8CX2OIuiZDNgbvk6qsWDJT1ZuJZaHORWU58jUjN7JkxtLXarmzU8BnonKfpQSaxER6FDo_IPn0bSXmTXHe1FnUNFGpPlvdi7c6ZiYr97c1LUHBKtxNzAZSFErdHGBf2mDPuwgNZjHquoT4Lf-nGdGhM5S0rvtGlGPAWb4esUx3TR5H9Ph0L6roxGtXml2uF-W26r7R1WG9rebvDLZqPkYX1_p6vPa61ub9YVivN5JWiq_33e3WmFz38BWy7z1Q?type=png)](https://mermaid.live/edit#pako:eNqNUk1v2zAM_SuEzpndOFva-tDD2h33AaTHAAUjUbZQWfIkylkR5L9PthMX6C7TQSAenx75KJ6E9IpELSL9TuQkPRlsAnZ7B_n0GNhI06Nj-Br8MVL4N7GjMIz4nPnhmSCYpmXw-vqohueWIOUItLE2gk8MnCHtQwdHwy0MaI0ChYyAToG0Rr7GiRNxIDgkZu_-o8ik4A-MxpECHXz3XshECOQUhZzxbsJ7bGjWnO-LFnx6eLgYq-HXz90ztMx9rMsyclKGYiFj0ZKNxr2aQpuS_mDXW8K-Lx0dX1xu8CX2OIuiZDNgbvk6qsWDJT1ZuJZaHORWU58jUjN7JkxtLXarmzU8BnonKfpQSaxER6FDo_IPn0bSXmTXHe1FnUNFGpPlvdi7c6ZiYr97c1LUHBKtxNzAZSFErdHGBf2mDPuwgNZjHquoT4Lf-nGdGhM5S0rvtGlGPAWb4esUx3TR5H9Ph0L6roxGtXml2uF-W26r7R1WG9rebvDLZqPkYX1_p6vPa61ub9YVivN5JWiq_33e3WmFz38BWy7z1Q)
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Server
+
+    Note right of Browser: The user fills out the form with valid data and clicks the save button
+
+    Note right of Browser: The data obtained from the form is rendered on the page
+    
+    Browser ->> Server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate Server
+    Note left of Server: The data is updated
+    Server ->> Browser: 201 Created
+    deactivate Server
+```
